@@ -1,10 +1,11 @@
 import requests
 import json
+import getpass
 
 #change the variables below
-username = 'your_account'
-password = 'your_password'
-target_id = 'target_account'
+username = getpass.getpass("ID: ")
+password = getpass.getpass("pw: ")
+target_id = getpass.getpass("target ID: ")
 
 
 origin_url = 'https://www.instagram.com'
@@ -17,9 +18,21 @@ session.headers = {'user-agent': user_agent}
 session.headers.update({'Referer': origin_url})
 
 req = session.get(origin_url)
+try:
+    req.raise_for_status()
+except Exception as exc:
+    print('problem occur: %s' % (exc))
+    exit()
+
 session.headers.update({'X-CSRFToken': req.cookies['csrftoken']})
 login_data = {'username': username, 'password': password}
 login = session.post(login_url, data=login_data, allow_redirects=True)
+try:
+    login.raise_for_status()
+except Exception as exc:
+    print('problem occur: %s' % (exc))
+    exit()
+
 session.headers.update({'X-CSRFToken': login.cookies['csrftoken']})
 cookies = login.cookies
 login_text = json.loads(login.text)
@@ -80,7 +93,14 @@ def main():
     pics_url_list = []
 
     target_url = origin_url + '/' + target_id +'/?__a=1' 
-    data = session.get(target_url).json()
+    req = session.get(target_url)
+    try:
+        req.raise_for_status()
+    except Exception as exc:
+        print('problem occur: %s' % (exc))
+        exit()
+
+    data = req.json()
 
     not_last = True
 
