@@ -6,7 +6,7 @@ Get the pictures' url by getting json in python
 ### Prerequisite
 
 ```
-python3, requests, json
+python3, requests, json, getpass
 ```
 
 Install libraries:
