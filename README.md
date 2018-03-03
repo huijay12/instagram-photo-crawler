@@ -17,15 +17,14 @@ pip3 install requests
 
 ### Usage
 
-Change the variable 'username', 'password', 'target_id'
-'username', 'password' are your instagram id and password
-'target_id' is the instagram id you want to download
-
-Then,
-
 ```
 python3 main.py
 ```
+
+Then insert data 'username', 'password', 'target_id'.
+'username', 'password' are your instagram id and password
+'target_id' is the instagram id you want to download
+
 
 
 Reference:
