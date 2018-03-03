@@ -2,7 +2,6 @@ import requests
 import json
 import getpass
 
-#change the variables below
 username = getpass.getpass("ID: ")
 password = getpass.getpass("pw: ")
 target_id = getpass.getpass("target ID: ")
